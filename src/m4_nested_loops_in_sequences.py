@@ -9,10 +9,10 @@ Authors: David Mutchler, Valerie Galluzzi, Mark Hays, Amanda Stouder,
 
 def main():
     """ Calls the other functions to test them. """
-    # run_test_multiply_numbers()
+    run_test_multiply_numbers()
     run_test_sum_numbers()
-    # run_test_print_characters()
-    # run_test_print_characters_slanted()
+    run_test_print_characters()
+    run_test_print_characters_slanted()
 
 
 def run_test_multiply_numbers():
@@ -170,7 +170,7 @@ def run_test_sum_numbers():
 
     # Test 5:
     expected = 300
-    answer = sum_numbers([(100), (-100), (300)])
+    answer = sum_numbers(([100], [-100], [300]))
     print('Expected and actual are:', expected, answer)
 
 def sum_numbers(seq_seq):
@@ -184,7 +184,7 @@ def sum_numbers(seq_seq):
                     and each item in the subsequences is a number.
     """
     # ------------------------------------------------------------------
-    # TODO: 4. Implement and test this function.
+    # DONE 4. Implement and test this function.
     #   Note that you should write its TEST function first (above).
     # ------------------------------------------------------------------
 
@@ -241,11 +241,15 @@ def print_characters(sequence_of_strings):
     Precondition:  the given argument is a sequence of strings.
     """
     # ------------------------------------------------------------------
-    # TODO: 5. Implement and test this function.
+    # DONE 5. Implement and test this function.
     #  ** READ THE TESTS that have been written for you (ABOVE).
     #  ** ASK QUESTIONS if you do not understand the TESTS (ABOVE).
     # ------------------------------------------------------------------
 
+    for k in range(len(sequence_of_strings)):
+        ss = sequence_of_strings[k]
+        for j in range(len(ss)):
+            print(ss[j])
 
 def run_test_print_characters_slanted():
     """ Tests the    print_characters_slanted    function. """
@@ -294,7 +298,7 @@ def print_characters_slanted(sequence_of_strings):
     Precondition:  the given argument is a sequence of strings.
     """
     # ------------------------------------------------------------------
-    # TODO: 6. Implement and test this function.
+    # DONE 6. Implement and test this function.
     #  ** READ THE TESTS that have been written for you (ABOVE).
     #  ** ASK QUESTIONS if you do not understand the TESTS (ABOVE).
     #
@@ -302,6 +306,10 @@ def print_characters_slanted(sequence_of_strings):
     #             and string addition to stitch the spaces to the character.
     # ------------------------------------------------------------------
 
+    for k in range(len(sequence_of_strings)):
+        ss = sequence_of_strings[k]
+        for j in range(len(ss)):
+            print((' ' * j) + ss[j])
 
 # ----------------------------------------------------------------------
 # Calls  main  to start the ball rolling.
