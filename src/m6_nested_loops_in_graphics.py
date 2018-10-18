@@ -3,8 +3,8 @@ This project demonstrates NESTED LOOPS (i.e., loops within loops)
 in the context of TWO-DIMENSIONAL GRAPHICS.
 
 Authors: David Mutchler, Valerie Galluzzi, Mark Hays, Amanda Stouder,
-         their colleagues and PUT_YOUR_NAME_HERE.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         their colleagues and Jess Thuer.
+"""  # DONE 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 import rosegraphics as rg
 
@@ -80,10 +80,38 @@ def draw_L(window, circle, r, c):
     and m and n are small, positive integers.
     """
     # ------------------------------------------------------------------
-    # TODO: 2. Implement and test this function.
+    # DONE 2. Implement and test this function.
     #     The testing code is already written for you (above).
     # ------------------------------------------------------------------
 
+    original_x = circle.center.x
+    original_y = circle.center.y
+    radius = circle.radius
+
+    x = original_x
+    y = original_y
+    for _ in range(r):
+        for _ in range(3):
+            new_circle = rg.Circle(rg.Point(x, y), radius)
+            new_circle.fill_color = circle.fill_color
+            new_circle.attach_to(window)
+            window.render(0.1)
+
+            x = x + (2 * radius)
+
+        y = y + 2 * radius
+        x = original_x
+    for _ in range(3):
+        for _ in range(3+c):
+            new_circle = rg.Circle(rg.Point(x, y), radius)
+            new_circle.fill_color = circle.fill_color
+            new_circle.attach_to(window)
+            window.render(0.1)
+
+            x = x + (2 * radius)
+
+        y = y + 2 * radius
+        x = original_x
 
 def run_test_draw_wall_on_right():
     """ Tests the    draw_wall_on_right    function. """
@@ -121,9 +149,37 @@ def draw_wall_on_right(rectangle, n, window):
     and n is a small, positive integer.
     """
     # ------------------------------------------------------------------
-    # TODO: 3. Implement and test this function.
+    # DONE 3. Implement and test this function.
     #     The testing code is already written for you (above).
     # ------------------------------------------------------------------
+
+    rect_1x = rectangle.corner_1.x
+    rect_2x = rectangle.corner_2.x
+    c1 = rectangle.corner_1
+    c2 = rectangle.corner_2
+    import math
+    y_dist = math.fabs(c1.y - c2.y)
+    x_dist = math.fabs(c1.x - c2.x)
+
+    for k in range(n):
+        for _ in range(k+1):
+            new_rectangle = rg.Rectangle(c1, c2)
+            new_rectangle.attach_to(window)
+            window.render(0.1)
+            if c1.x > c2.x:
+                c1.x = c2.x
+                c2.x = c2.x - x_dist
+            else:
+                c2.x = c1.x
+                c1.x = c1.x - x_dist
+        c1.x = rect_1x
+        c2.x = rect_2x
+        if c1.y < c2.y:
+            c1.y = c2.y
+            c2.y = c2.y + y_dist
+        else:
+            c2.y = c1.y
+            c1.y = c2.y + y_dist
 
 
 # ----------------------------------------------------------------------
